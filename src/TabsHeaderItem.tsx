@@ -8,7 +8,6 @@ import type { TabScreenProps } from './TabScreen';
 import Color from 'color';
 import { useAnimatedText } from './internal';
 import type { IconPosition, Mode } from './utils';
-import MaterialCommunityIcon from './MaterialCommunityIcon';
 
 const AnimatedText = Animated.createAnimatedComponent<
   React.ComponentType<TextProps>
@@ -115,14 +114,7 @@ export default function TabsHeaderItem({
                 iconPosition !== 'top' && styles.marginRight,
               ]}
             >
-              <MaterialCommunityIcon
-                selectable={false}
-                accessibilityElementsHidden={true}
-                importantForAccessibility="no"
-                name={tab.props.icon || ''}
-                style={{ color: color, opacity }}
-                size={24}
-              />
+              {tab.props.icon}
             </View>
           ) : null}
           {badgeIsFilled ? (
