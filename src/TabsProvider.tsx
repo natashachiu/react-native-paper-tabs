@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TabsContext } from './context';
 import type { TabsProviderProps } from './utils';
 
@@ -7,13 +7,13 @@ export function TabsProvider({
   onChangeIndex,
   defaultIndex,
 }: TabsProviderProps) {
-  const [index, setIndex] = useState<number>(defaultIndex || 0);
+  const index = React.useMemo(() => defaultIndex || 0, [defaultIndex]);
+
   const goTo = React.useCallback(
     (ind: number) => {
-      setIndex(ind);
       onChangeIndex?.(ind);
     },
-    [setIndex, onChangeIndex]
+    [onChangeIndex]
   );
 
   const value = React.useMemo(() => ({ goTo, index }), [goTo, index]);
